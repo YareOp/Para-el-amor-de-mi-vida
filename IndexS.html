@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Detalle romántico Spider-Man 💖</title>
+<style>
+body {
+margin: 0;
+height: 100vh;
+background: url('spiderman-fondo.jpg') no-repeat center center/cover; /* Fondo Spider-Man */
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+font-family: 'Segoe UI', sans-serif;
+text-align: center;
+overflow: hidden;
+position: relative;
+}
+
+/* Capa semitransparente para resaltar frases */
+body::after {
+content: "";
+position: fixed;
+top: 0; left: 0;
+width: 100%; height: 100%;
+background: rgba(255,255,255,0.2); /* ligera claridad sobre fondo */
+z-index: -1;
+}
+
+h1 {
+margin-top: 20px;
+font-size: 2.5em;
+color: #000;
+text-shadow: 1px 1px 5px rgba(255,255,255,0.6);
+
+}
+
+/* Carrusel de fotos */
+.carousel {
+width: 300px;
+height: 300px;
+margin: 20px 0;
+position: relative;
+overflow: hidden;
+border-radius: 20px;
+box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.carousel img {
+width: 100%;
+height: 100%;
+position: absolute;
+left: 0;
+top: 0;
+opacity: 0;
+transition: opacity 1s ease-in-out;
+object-fit: cover;
+border-radius: 20px;
+}
+
+.carousel img.active {
+opacity: 1;
+}
+
+/* Botón Spider-Man */
+#spiderButton {
+background: none;
+border: none;
+cursor: pointer;
+margin-bottom: 20px;
+
+outline: none;
+}
+
+#spiderButton img {
+width: 120px;
+height: 120px;
+border-radius: 50%;
+transition: transform 0.2s;
+}
+
+#spiderButton img:hover {
+transform: scale(1.1);
+}
+
+/* Caja de frases */
+.frase-box {
+padding: 20px 40px;
+border-radius: 20px;
+background: rgba(255, 255, 255, 0.7);
+max-width: 90%;
+box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.frase {
+font-family: 'Cursive', 'Segoe Script', sans-serif;
+font-size: 1.6em;
+color: #000; /* letras negras */
+transition: opacity 0.5s ease-in-out;
+}
+
+.fade {
+opacity: 0;
+}
+
+/* Corazones flotando */
+
+.heart {
+position: absolute;
+font-size: 20px;
+animation: float 6s linear infinite;
+pointer-events: none;
+}
+
+@keyframes float {
+0% {transform: translateY(100vh) scale(1);}
+50% {transform: translateY(50vh) scale(1.2);}
+100% {transform: translateY(-10vh) scale(1);}
+}
+
+</style>
+</head>
+<body>
+
+<h1>Un detalle especial ️💖</h1>
+
+<!-- Carrusel de fotos -->
+<div class="carousel">
+<img src="foto1.jpg" class="active" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
+<img src="foto3.jpg" alt="Foto 3">
+<img src="foto4.jpg" alt="Foto 4">
+<img src="foto5.jpg" alt="Foto 5">
+<img src="foto6.jpg" alt="Foto 6">
+<img src="foto7.jpg" alt="Foto 7">
+<img src="foto8.jpg" alt="Foto 8">
+<img src="foto9.jpg" alt="Foto 9">
+<img src="foto10.jpg" alt="Foto 10">
+<img src="foto11.jpg" alt="Foto 11">
+<img src="foto12.jpg" alt="Foto 12">
+<img src="foto13.jpg" alt="Foto 13">
+<img src="foto14.jpg" alt="Foto 14">
+
+<img src="foto15.jpg" alt="Foto 15">
+</div>
+
+<!-- Botón Spider-Man -->
+<button id="spiderButton">
+<img src="spiderman.png" alt="Spider-Man">
+</button>
+
+<!-- Caja de frases -->
+<div class="frase-box">
+<p class="frase" id="frase">Toca al Spider-Man 💖</p>
+</div>
+
+<script>
+// Carrusel automático
+const images = document.querySelectorAll('.carousel img');
+let current = 0;
+setInterval(() => {
+images[current].classList.remove('active');
+current = (current + 1) % images.length;
+images[current].classList.add('active');
+}, 4000);
+
+// Frases románticas
+const frases = [
+'Cada día contigo es un regalo que no quiero perder 🌸',
+'Tu sonrisa ilumina hasta mis momentos más oscuros ✨',
+'Eres mi refugio y mi paz 🥹',
+'Contigo, cualquier lugar se siente como hogar 🏡',
+'Te amo más de lo que las palabras podrían expresar 💖',
+'Cada instante contigo se siente mágico ✨',
+'Mi corazón late más fuerte por ti 💞',
+'No hay nadie que me haga sonreír como tú 😍',
+'Eres mi lugar favorito en el mundo 🌹',
+'Cada recuerdo contigo es un tesoro que guardo 💌',
+
+'Me haces sentir que todo es posible 💫',
+'Eres la razón por la que creo en el amor verdadero 💖',
+'Quiero que siempre recordemos estos momentos juntos 🥰',
+'Gracias por ser tú y por hacerme feliz todos los días 🌷',
+'Contigo aprendí que amar es fácil y natural 💕',
+'Nunca dejo de pensar en ti, incluso cuando no estás 💭',
+'Eres el sueño que nunca quiero despertar 🌟',
+'Mi corazón es tuyo, hoy y siempre 💘',
+'Cada día a tu lado es mi día favorito 🥹',
+'Gracias por llenar mi vida de alegría y ternura 🌸'
+];
+
+const fraseElem = document.getElementById('frase');
+const spiderButton = document.getElementById('spiderButton');
+let index = 0;
+
+spiderButton.addEventListener('click', () => {
+fraseElem.classList.add('fade');
+setTimeout(() => {
+fraseElem.textContent = frases[index];
+fraseElem.classList.remove('fade');
+index = (index + 1) % frases.length;
+}, 500);
+});
+
+// Corazones flotando
+function crearCorazon() {
+const heart = document.createElement('div');
+heart.className = 'heart';
+heart.style.left = Math.random() * window.innerWidth + 'px';
+heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+heart.textContent = '❤️';
+document.body.appendChild(heart);
+setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(crearCorazon, 500);
+
+</script>
+
+</body>
+</html>
